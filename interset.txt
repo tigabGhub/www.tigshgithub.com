@@ -1,0 +1,64 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace WindowsFormsApplication1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+
+            DateTime iDate;
+            iDate = dateTimePicker1.Value;
+            MessageBox.Show("Selected date is " + iDate);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+            dateTimePicker1.Format = DateTimePickerFormat.Short;
+            dateTimePicker1.Value = DateTime.Today;
+        }
+
+      private void button2_Click(object sender, EventArgs e)
+        {
+            decimal principal;
+            double rate; // store interest rate
+            int year; // store number of years
+             decimal amount; // store amount
+              string output; // store output
+
+ // retrieve user input
+ principal = Convert.ToDecimal(txtp.Text );
+rate = Convert.ToDouble(txtr.Text );
+year = Convert.ToInt32( yearUpDown.Value );
+    // set output header
+output = "Year\tAmount on Deposit\r\n";
+
+ // calculate amount after each year and append to output
+ for ( int yearCounter = 1; yearCounter <= year; ++yearCounter )
+ {
+ amount = principal * ( ( decimal ) Math.Pow( ( 1 + rate / 100 ), yearCounter ) );
+ output += ( yearCounter + "\t" + string.Format( "{0:C}", amount ) + "\r\n" );
+ } // end for
+
+ displayTextBox.Text = output; // display result
+
+
+
+
+        }
+    }
+}
